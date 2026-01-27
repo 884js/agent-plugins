@@ -51,14 +51,23 @@ PREV_TAG=$(git tag -l 'savepoint/*' --sort=-creatordate | head -1)
 TAG_NAME="savepoint/sp-$TIMESTAMP"
 DIFF_BASENAME="sp-$TIMESTAMP"
 
-# 要約を生成（変更ファイル名リスト）
+# 要約を生成（詳細データ形式）
 if [ -z "$PREV_TAG" ]; then
   SUMMARY="Initial savepoint"
 else
-  # 変更ファイル名を取得（最大3ファイル）
-  CHANGED_FILES=$(git diff --name-only "$PREV_TAG" HEAD | head -3 | tr '\n' ', ' | sed 's/,$//')
-  if [ -n "$CHANGED_FILES" ]; then
-    SUMMARY="Changed: $CHANGED_FILES"
+  # 変更行数を取得
+  STAT=$(git diff --stat "$PREV_TAG" HEAD | tail -1)
+  INSERTIONS=$(echo "$STAT" | grep -oE '[0-9]+ insertion' | grep -oE '[0-9]+' || echo "0")
+  DELETIONS=$(echo "$STAT" | grep -oE '[0-9]+ deletion' | grep -oE '[0-9]+' || echo "0")
+  [ -z "$INSERTIONS" ] && INSERTIONS="0"
+  [ -z "$DELETIONS" ] && DELETIONS="0"
+
+  # 全ファイルのステータスを取得（制限なし）
+  FILES=$(git diff --name-status "$PREV_TAG" HEAD)
+  if [ -n "$FILES" ]; then
+    FILE_COUNT=$(echo "$FILES" | wc -l | tr -d ' ')
+    FILE_LIST=$(echo "$FILES" | awk '{print $1":"$2}' | tr '\n' ' ' | sed 's/ $//')
+    SUMMARY="+$INSERTIONS/-$DELETIONS | $FILE_COUNT files | $FILE_LIST"
   else
     SUMMARY="No changes"
   fi

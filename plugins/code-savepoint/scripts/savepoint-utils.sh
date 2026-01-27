@@ -176,5 +176,28 @@ sync_from_repo() {
     return 1
   fi
 
-  rsync -a --exclude='.git' "$repo_path/" "$project_path/"
+  local temp_repo_list temp_project_list temp_delete_list
+  temp_repo_list=$(mktemp)
+  temp_project_list=$(mktemp)
+  temp_delete_list=$(mktemp)
+
+  # リポジトリ側のファイルリスト（1回のスキャンで済む）
+  find "$repo_path" -type f ! -path '*/.git/*' | \
+    sed "s|^$repo_path/||" | sort > "$temp_repo_list"
+
+  # rsync --files-from で必要なファイルのみ同期
+  rsync -a --files-from="$temp_repo_list" "$repo_path/" "$project_path/"
+
+  # プロジェクト側: git管理ファイルのみ対象
+  git -C "$project_path" ls-files | sort > "$temp_project_list"
+
+  # 削除対象 = プロジェクトにあってリポジトリにないgit管理ファイル
+  comm -23 "$temp_project_list" "$temp_repo_list" > "$temp_delete_list"
+
+  if [ -s "$temp_delete_list" ]; then
+    sed "s|^|$project_path/|" "$temp_delete_list" | xargs rm -f
+    find "$project_path" -type d -empty ! -path '*/.git/*' -delete 2>/dev/null || true
+  fi
+
+  rm -f "$temp_repo_list" "$temp_project_list" "$temp_delete_list"
 }
