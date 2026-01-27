@@ -1,0 +1,13 @@
+{
+  "name": "uki884",
+  "owner": {
+    "name": "yukihayashi"
+  },
+  "plugins": [
+    {
+      "name": "code-savepoint",
+      "source": "./plugins/code-savepoint",
+      "description": "AI変更前に自動セーブポイントを作成し、/rejectで戻せるプラグイン"
+    }
+  ]
+}

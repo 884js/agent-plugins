@@ -1,0 +1,8 @@
+{
+  "name": "code-savepoint",
+  "description": "AI変更前に自動セーブポイントを作成し、/rejectで戻せるプラグイン",
+  "version": "1.0.0",
+  "author": {
+    "name": "yukihayashi"
+  }
+}
