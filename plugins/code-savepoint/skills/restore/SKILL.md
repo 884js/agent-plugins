@@ -1,5 +1,5 @@
 ---
-name: restore
+name: savepoint-restore
 description: 指定したセーブポイントに戻す
 allowed-tools: Bash
 disable-model-invocation: true

@@ -1,5 +1,5 @@
 ---
-name: reject
+name: savepoint-reject
 description: AIの変更を破棄して直前のセーブポイントに戻す。「元に戻して」「やり直して」「変更を取り消して」などで使用。
 allowed-tools: Bash
 disable-model-invocation: true

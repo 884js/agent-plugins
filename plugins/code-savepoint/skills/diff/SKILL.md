@@ -1,5 +1,5 @@
 ---
-name: diff
+name: savepoint-diff
 description: セーブポイントとの差分を表示
 allowed-tools: Bash
 argument-hint: "[savepoint1] [savepoint2]"

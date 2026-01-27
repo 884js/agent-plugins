@@ -1,5 +1,5 @@
 ---
-name: list
+name: savepoint-list
 description: セーブポイント一覧を表示
 allowed-tools: Bash
 ---
