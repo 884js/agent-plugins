@@ -48,8 +48,8 @@ git commit --quiet -m "Savepoint: $TIMESTAMP"
 PREV_TAG=$(git tag -l 'savepoint/*' --sort=-creatordate | head -1)
 
 # タグを作成
-TAG_NAME="savepoint/sp-$TIMESTAMP"
-DIFF_BASENAME="sp-$TIMESTAMP"
+TAG_NAME="savepoint/$TIMESTAMP"
+DIFF_BASENAME="$TIMESTAMP"
 
 # 要約を生成（詳細データ形式）
 if [ -z "$PREV_TAG" ]; then
