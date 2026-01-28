@@ -3,8 +3,12 @@
  * Gitベースのセーブポイント作成スクリプト
  */
 
-import { $ } from "zx";
+import { $, quote } from "zx";
 import { writeFileSync } from "fs";
+
+// zx 8.x + bun 環境では quote 関数が未定義になるため、明示的に設定
+$.shell = "/bin/bash";
+$.quote = quote;
 import {
   initRepo,
   syncToRepo,

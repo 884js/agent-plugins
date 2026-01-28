@@ -82,6 +82,10 @@ function getBunVersion() {
 function isMarkerValid() {
   if (!existsSync(markerFile)) return false;
 
+  // node_modules が存在しなければ無効
+  const nodeModulesPath = join(pluginRoot, "node_modules");
+  if (!existsSync(nodeModulesPath)) return false;
+
   try {
     const marker = JSON.parse(readFileSync(markerFile, "utf-8"));
     const pkg = JSON.parse(readFileSync(packageJsonPath, "utf-8"));

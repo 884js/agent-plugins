@@ -2,8 +2,12 @@
  * セーブポイント共通ユーティリティ関数
  */
 
-import { $ } from "zx";
+import { $, quote } from "zx";
 import { createHash } from "crypto";
+
+// zx 8.x + bun 環境では quote 関数が未定義になるため、明示的に設定
+$.shell = "/bin/bash";
+$.quote = quote;
 import {
   existsSync,
   mkdirSync,

@@ -5,8 +5,8 @@
   },
   "plugins": [
     {
-      "name": "code-savepoint",
-      "source": "./plugins/code-savepoint",
+      "name": "savepoint",
+      "source": "./plugins/savepoint",
       "description": "AI変更前に自動セーブポイントを作成し、/rejectで戻せるプラグイン"
     }
   ]
