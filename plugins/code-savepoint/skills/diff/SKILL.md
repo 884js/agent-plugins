@@ -13,13 +13,13 @@ argument-hint: "[savepoint1] [savepoint2]"
 
 ```bash
 # 最新セーブポイントからの変更
-${CLAUDE_PLUGIN_ROOT}/skills/diff/scripts/diff.sh
+"$HOME/.bun/bin/bun" "${CLAUDE_PLUGIN_ROOT}/skills/diff/scripts/diff.ts"
 
 # 指定セーブポイントからの変更
-${CLAUDE_PLUGIN_ROOT}/skills/diff/scripts/diff.sh sp-20250126-153045
+"$HOME/.bun/bin/bun" "${CLAUDE_PLUGIN_ROOT}/skills/diff/scripts/diff.ts" 20250126-153045
 
 # 2つのセーブポイント間の差分
-${CLAUDE_PLUGIN_ROOT}/skills/diff/scripts/diff.sh sp-20250126-142010 sp-20250126-153045
+"$HOME/.bun/bin/bun" "${CLAUDE_PLUGIN_ROOT}/skills/diff/scripts/diff.ts" 20250126-142010 20250126-153045
 ```
 
 ## 引数
@@ -31,7 +31,7 @@ ${CLAUDE_PLUGIN_ROOT}/skills/diff/scripts/diff.sh sp-20250126-142010 sp-20250126
 ## 出力例
 
 ```
-変更されたファイル (savepoint/sp-20250126-153045 → 現在):
+変更されたファイル (savepoint/20250126-153045 → 現在):
 M  src/utils.ts
 A  src/new-feature.ts
 

@@ -12,7 +12,7 @@ AIが行った変更を破棄し、直前のセーブポイントまで戻しま
 ## 使用方法
 
 ```bash
-${CLAUDE_PLUGIN_ROOT}/skills/reject/scripts/reject.sh
+"$HOME/.bun/bin/bun" "${CLAUDE_PLUGIN_ROOT}/skills/reject/scripts/reject.ts"
 ```
 
 ## 動作

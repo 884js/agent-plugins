@@ -5,7 +5,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/create-savepoint.sh",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/smart-install.js\"",
+            "timeout": 120
+          },
+          {
+            "type": "command",
+            "command": "\"$HOME/.bun/bin/bun\" \"${CLAUDE_PLUGIN_ROOT}/scripts/create-savepoint.ts\"",
             "timeout": 60
           }
         ]
@@ -16,7 +21,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/create-savepoint.sh",
+            "command": "\"$HOME/.bun/bin/bun\" \"${CLAUDE_PLUGIN_ROOT}/scripts/create-savepoint.ts\"",
             "timeout": 60,
             "async": true
           }
@@ -28,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/cleanup-savepoint.sh",
+            "command": "\"$HOME/.bun/bin/bun\" \"${CLAUDE_PLUGIN_ROOT}/scripts/cleanup-savepoint.ts\"",
             "timeout": 30
           }
         ]

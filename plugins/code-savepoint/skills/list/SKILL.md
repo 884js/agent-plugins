@@ -11,7 +11,7 @@ allowed-tools: Bash
 ## 使用方法
 
 ```bash
-${CLAUDE_PLUGIN_ROOT}/skills/list/scripts/list.sh
+"$HOME/.bun/bin/bun" "${CLAUDE_PLUGIN_ROOT}/skills/list/scripts/list.ts"
 ```
 
 ## 表示指示
@@ -19,7 +19,7 @@ ${CLAUDE_PLUGIN_ROOT}/skills/list/scripts/list.sh
 スクリプトは以下の形式で生データを出力します：
 
 ```
-[sp-YYYYMMDD-HHMMSS] YYYY-MM-DD
+[YYYYMMDD-HHMMSS] YYYY-MM-DD
   +25/-10 | 8 files | M:file1 M:file2 A:file3 D:file4...
 ```
 
@@ -39,8 +39,8 @@ ${CLAUDE_PLUGIN_ROOT}/skills/list/scripts/list.sh
 
 | セーブポイント | 日時 | 変更規模 | 概要 |
 |--------------|------|---------|------|
-| sp-20250126-153045 | 01-26 15:30 | +25/-10 (3files) | src配下のTS変更、設定追加 |
-| sp-20250126-142010 | 01-26 14:20 | - | 初期セーブポイント |
+| 20250126-153045 | 01-26 15:30 | +25/-10 (3files) | src配下のTS変更、設定追加 |
+| 20250126-142010 | 01-26 14:20 | - | 初期セーブポイント |
 
 ## 注意事項
 
