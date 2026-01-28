@@ -9,6 +9,7 @@ import {
   initRepo,
   syncToRepo,
   saveSessionId,
+  clearPendingSession,
   getDiffsDir,
   readHookInput,
 } from "./lib/utils";
@@ -35,6 +36,9 @@ async function main() {
 
   // セーブポイントリポジトリを初期化（初回のみ）
   const repoPath = await initRepo(projectPath);
+
+  // pending-session は initRepo 完了後は不要なので削除
+  clearPendingSession(projectPath);
 
   // プロジェクトファイルをリポジトリに同期
   const synced = await syncToRepo(projectPath);
