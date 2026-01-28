@@ -27,17 +27,6 @@
           }
         ]
       }
-    ],
-    "SessionEnd": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME/.bun/bin/bun\" \"${CLAUDE_PLUGIN_ROOT}/scripts/cleanup-savepoint.ts\"",
-            "timeout": 30
-          }
-        ]
-      }
     ]
   }
 }
