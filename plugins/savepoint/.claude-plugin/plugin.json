@@ -1,5 +1,5 @@
 {
-  "name": "code-savepoint",
+  "name": "savepoint",
   "description": "AI変更前に自動セーブポイントを作成し、/rejectで戻せるプラグイン",
   "version": "1.0.0",
   "author": {

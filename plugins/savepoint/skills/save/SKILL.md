@@ -1,17 +1,17 @@
 ---
-name: savepoint-create
+name: savepoint-save
 description: 手動でセーブポイントを作成
 allowed-tools: Bash
 ---
 
-# Create Command
+# Save Command
 
 現在の状態でセーブポイントを手動作成します。
 
 ## 使用方法
 
 ```bash
-"$HOME/.bun/bin/bun" "${CLAUDE_PLUGIN_ROOT}/skills/create/scripts/create.ts"
+"$HOME/.bun/bin/bun" "${CLAUDE_PLUGIN_ROOT}/skills/save/scripts/create.ts"
 ```
 
 ## 動作

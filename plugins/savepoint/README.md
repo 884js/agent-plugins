@@ -1,23 +1,23 @@
-# code-savepoint
+# savepoint
 
 AIの変更を自動でセーブポイントに保存し、いつでもワンコマンドで戻せるClaude Codeプラグイン。
 
 
 ## 概要
 Claude Codeでコード編集中、自動的にセーブポイントを作成します。
-変更が気に入らなければ `/code-savepoint:reject` で即座に戻せます。
+変更が気に入らなければ `/savepoint:reject` で即座に戻せます。
 
 ## クイックスタート
 
 ```bash
 # セーブポイント一覧を確認
-/code-savepoint:list
+/savepoint:list
 
 # 現在の変更を確認
-/code-savepoint:diff
+/savepoint:diff
 
 # AIの変更を取り消して直前に戻す（Bash変更も戻せる！）
-/code-savepoint:reject
+/savepoint:reject
 ```
 
 ---
@@ -36,10 +36,10 @@ Claude Codeでコード編集中、自動的にセーブポイントを作成し
 
 ### スキル一覧
 
-#### `/code-savepoint:create`
+#### `/savepoint:save`
 手動でセーブポイントを作成します。重要な変更の前に明示的に保存したい場合に使用。
 
-#### `/code-savepoint:list`
+#### `/savepoint:list`
 セーブポイントの一覧を表示します。
 
 | 表示内容 | 説明 |
@@ -48,26 +48,26 @@ Claude Codeでコード編集中、自動的にセーブポイントを作成し
 | 日時 | 作成日時 |
 | 変更サマリー | 変更されたファイル（最大3つ） |
 
-#### `/code-savepoint:diff [セーブポイント1] [セーブポイント2]`
+#### `/savepoint:diff [セーブポイント1] [セーブポイント2]`
 セーブポイント間の差分を表示します。
 
 - **引数なし**: 最新セーブポイント ↔ 現在の状態
 - **1つ**: 指定セーブポイント ↔ 現在の状態
 - **2つ**: セーブポイント1 ↔ セーブポイント2
 
-#### `/code-savepoint:reject`
+#### `/savepoint:reject`
 直前のセーブポイントに戻します。AIの変更を即座に取り消したい場合に使用。
 **Bashで削除されたファイルも復元できます。**
 
-#### `/code-savepoint:restore <セーブポイント名>`
+#### `/savepoint:rollback <セーブポイント名>`
 指定したセーブポイントに戻します。
 
 ```bash
 # 例
-/code-savepoint:restore 20250126-153045
+/savepoint:rollback 20250126-153045
 ```
 
-#### `/code-savepoint:cleanup`
+#### `/savepoint:cleanup`
 現在のプロジェクトのセーブポイントを手動で削除します。ディスク容量を解放したい場合に使用。
 
 ### ストレージ
@@ -85,7 +85,7 @@ Claude Codeでコード編集中、自動的にセーブポイントを作成し
 ### 注意事項
 
 - `.claude/` ディレクトリ内のプロジェクトはセーブポイント対象外
-- `restore` / `reject` 実行時、戻り先より新しいセーブポイントは削除されます（線形履歴）
+- `rollback` / `reject` 実行時、戻り先より新しいセーブポイントは削除されます（線形履歴）
 - バイナリファイルの差分は表示されません
 
 ---
