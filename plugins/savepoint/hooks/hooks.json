@@ -23,7 +23,7 @@
             "type": "command",
             "command": "\"$HOME/.bun/bin/bun\" \"${CLAUDE_PLUGIN_ROOT}/scripts/create-savepoint.ts\"",
             "timeout": 60,
-            "async": true
+            "async": false
           }
         ]
       }
