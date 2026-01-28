@@ -1,0 +1,13 @@
+{
+  "name": "savepoint",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "tsx": "^4.19.0",
+    "zx": "^8.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0"
+  }
+}

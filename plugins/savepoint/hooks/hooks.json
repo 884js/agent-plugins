@@ -1,0 +1,32 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/smart-install.js\"",
+            "timeout": 120
+          },
+          {
+            "type": "command",
+            "command": "\"$HOME/.bun/bin/bun\" \"${CLAUDE_PLUGIN_ROOT}/scripts/create-savepoint.ts\"",
+            "timeout": 60
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/.bun/bin/bun\" \"${CLAUDE_PLUGIN_ROOT}/scripts/create-savepoint.ts\"",
+            "timeout": 60,
+            "async": false
+          }
+        ]
+      }
+    ]
+  }
+}
