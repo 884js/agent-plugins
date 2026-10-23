@@ -1,0 +1,8 @@
+{
+  "name": "development",
+  "description": "Codex・Claude Codeで使う開発スキル集",
+  "author": {
+    "name": "884js"
+  },
+  "repository": "https://github.com/884js/agent-plugins"
+}

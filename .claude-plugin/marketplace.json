@@ -3,11 +3,14 @@
   "owner": {
     "name": "884js"
   },
+  "metadata": {
+    "description": "Codex・Claude Code共通の開発スキル"
+  },
   "plugins": [
     {
-      "name": "savepoint",
-      "source": "./plugins/savepoint",
-      "description": "AI変更前に自動セーブポイントを作成し、/rejectで戻せるプラグイン"
+      "name": "development",
+      "source": "./plugins/development",
+      "description": "技術選定や命名など、開発に関するスキル集"
     }
   ]
 }
