@@ -4,13 +4,13 @@
     "name": "884js"
   },
   "metadata": {
-    "description": "Codex・Claude Code共通の技術選定・命名スキル"
+    "description": "Codex・Claude Code共通の開発スキル"
   },
   "plugins": [
     {
-      "name": "developer-tools",
-      "source": "./plugins/developer-tools",
-      "description": "信頼性を確認する技術選定と、目的に沿った名前の提案・比較"
+      "name": "development",
+      "source": "./plugins/development",
+      "description": "技術選定や命名など、開発に関するスキル集"
     }
   ]
 }

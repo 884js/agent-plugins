@@ -1,8 +1,0 @@
-{
-  "name": "developer-tools",
-  "description": "Codex・Claude Code共通の技術選定・命名スキル",
-  "author": {
-    "name": "884js"
-  },
-  "repository": "https://github.com/884js/agent-plugins"
-}
