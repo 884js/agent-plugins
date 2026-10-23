@@ -44,12 +44,6 @@ Claude Code内で実行します。
 
 根拠: [Codexの起動時更新](https://github.com/openai/codex/blob/rust-v0.142.5/codex-rs/core-plugins/src/manager.rs#L1837-L1889)、[Claude Codeのversion判定](https://code.claude.com/docs/en/plugins/loading#how-claude-code-computes-the-version)、[Claude Codeの自動更新](https://code.claude.com/docs/en/plugins/host-marketplace#turn-on-auto-update)。
 
-## 旧プラグインからの移行
-
-savepointとその自動フック・依存パッケージは削除しました。既存環境にインストール済みの場合、マーケットプレイスから消えるだけではアンインストールされません。各クライアントの一覧で名前を確認し、不要なsavepointをアンインストールしてください。その後 `development@agent-plugins` をインストールします。
-
-試作版の `developer-tools@agent-plugins` をインストールしていた場合も、旧名のプラグインをアンインストールしてから `development@agent-plugins` をインストールしてください。明示呼び出しの名前空間は `development:` に変わります。
-
 ## 権限とデータ
 
 このプラグインはMCPサーバー、自動実行フック、インストール処理、独自の利用計測を登録しません。スキルの調査時には、利用中のクライアントの検索・閲覧・ファイル操作ツールを使用します。クライアント自身の通信・計測設定は変更しません。
