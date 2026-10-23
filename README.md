@@ -7,8 +7,11 @@ Codex・Claude Codeで同じスキルを使うためのマーケットプレイ�
 | スキル | 用途 |
 | --- | --- |
 | [technology-selection](plugins/developer-tools/skills/technology-selection/SKILL.md) | 公式提供・人気・保守・権限・外部送信を確認して技術を選ぶ |
+| [naming](plugins/developer-tools/skills/naming/SKILL.md) | プロダクト・リポジトリ・プラグイン・スキルの名前を提案・比較・見直す |
 
-技術選定の相談やライブラリ・MCPなどの導入時に、説明文に基づいてスキルが選ばれます。明示的に使う場合は、Codexでは `$developer-tools:technology-selection`、Claude Codeでは `/developer-tools:technology-selection` を指定します。
+技術選定や命名の相談時に、説明文に基づいて該当するスキルが選ばれます。明示的に使う場合は、Codexでは `$developer-tools:technology-selection` / `$developer-tools:naming`、Claude Codeでは `/developer-tools:technology-selection` / `/developer-tools:naming` を指定します。
+
+`naming` は、役割が伝わるか、覚えやすいか、呼び出し名として使いやすいかを比べ、用途に応じて重複を確認します。変数・関数・クラス名の整理は対象外です。名前の提案だけでファイルや公開識別子を変更しません。
 
 ## Codex
 
