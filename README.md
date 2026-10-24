@@ -8,10 +8,13 @@ Codex・Claude Codeで同じスキルを使うためのマーケットプレイ�
 | --- | --- |
 | [technology-selection](plugins/development/skills/technology-selection/SKILL.md) | 公式提供・人気・保守・権限・外部送信を確認して技術を選ぶ |
 | [naming](plugins/development/skills/naming/SKILL.md) | プロダクト・リポジトリ・プラグイン・スキルの名前を提案・比較・見直す |
+| [check-docs](plugins/development/skills/check-docs/SKILL.md) | ステージ済みの変更に関連するドキュメントの更新漏れを確認・修正する |
 
-技術選定や命名の相談時に、説明文に基づいて該当するスキルが選ばれます。明示的に使う場合は、Codexでは `$development:technology-selection` / `$development:naming`、Claude Codeでは `/development:technology-selection` / `/development:naming` を指定します。
+技術選定・命名・ドキュメントの更新確認などの依頼時に、説明文に基づいて該当するスキルが選ばれます。明示的に使う場合は、Codexでは `$development:technology-selection` / `$development:naming` / `$development:check-docs`、Claude Codeでは `/development:technology-selection` / `/development:naming` / `/development:check-docs` を指定します。
 
 `naming` は、役割が伝わるか、覚えやすいか、呼び出し名として使いやすいかを比べ、用途に応じて重複を確認します。変数・関数・クラス名の整理は対象外です。名前の提案だけでファイルや公開識別子を変更しません。
+
+`check-docs` は、既定ではステージ済みの差分を対象に、各リポジトリの指示と関連ドキュメントを確認します。確認だけの依頼では指摘を返し、更新まで依頼されている場合は必要な箇所を修正します。自動実行フックは追加しません。
 
 ## Codex
 
