@@ -10,14 +10,17 @@ Codex・Claude Codeで同じスキルを使うためのマーケットプレイ�
 | [naming](plugins/development/skills/naming/SKILL.md) | プロダクト・リポジトリ・プラグイン・スキルの名前を提案・比較・見直す |
 | [check-docs](plugins/development/skills/check-docs/SKILL.md) | ステージ済みの変更に関連するドキュメントの更新漏れを確認・修正する |
 | [browser-check](plugins/development/skills/browser-check/SKILL.md) | 日常のブラウザ確認を変更箇所と合格条件に絞り、重複確認を減らす |
+| [working-style](plugins/development/skills/working-style/SKILL.md) | 作業の進め方と、説明・文章修正の伝え方を適用する |
 
-技術選定・命名・ドキュメントの更新確認・ブラウザ確認などの依頼時に、説明文に基づいて該当するスキルが選ばれます。明示的に使う場合は、Codexでは `$development:<スキル名>`、Claude Codeでは `/development:<スキル名>` を指定します。例: `$development:browser-check` / `/development:browser-check`。
+開発の計画・実装・技術選定・命名・ドキュメントの更新確認・ブラウザ確認などの依頼時に、説明文に基づいて該当するスキルが選ばれます。明示的に使う場合は、Codexでは `$development:<スキル名>`、Claude Codeでは `/development:<スキル名>` を指定します。例: `$development:browser-check` / `/development:browser-check`。
 
 `naming` は、役割が伝わるか、覚えやすいか、呼び出し名として使いやすいかを比べ、用途に応じて重複を確認します。変数・関数・クラス名の整理は対象外です。名前の提案だけでファイルや公開識別子を変更しません。
 
 `check-docs` は、既定ではステージ済みの差分を対象に、判定用の別エージェント1体が関連ドキュメントを確認します。親エージェントは要確認の箇所だけ追加調査し、更新まで依頼されている場合は必要な箇所を修正します。差分がなければ別エージェントを起動せず、委譲機能が使えない場合は親が判定します。モデルの固定や自動実行フックの追加は行いません。
 
 `browser-check` は、日常の変更確認で合格条件を必要最小限にし、確認できたら終了します。修正後は原則として直した箇所だけを再確認し、成功済みの項目や周辺機能まで確認し直しません。追加確認は具体的な不具合の疑いがある箇所に限ります。ブラウザ操作ツールの必須手順やプロジェクトの必須チェックは維持し、総合QAの代替にはしません。追加のブラウザツールは同梱しません。
+
+`working-style` は、合意の引き継ぎ・最小限の変更・情報の確認・図解・修正後の全文提示など、進め方と伝え方をまとめています。`description` による自動選択は、毎回の起動を保証するものではありません。
 
 ## Codex
 
