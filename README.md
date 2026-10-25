@@ -10,7 +10,7 @@ Codex・Claude Codeで同じスキルを使うためのマーケットプレイ�
 | [naming](plugins/development/skills/naming/SKILL.md) | プロダクト・リポジトリ・プラグイン・スキルの名前を提案・比較・見直す |
 | [check-docs](plugins/development/skills/check-docs/SKILL.md) | ステージ済みの変更に関連するドキュメントの更新漏れを確認・修正する |
 | [browser-check](plugins/development/skills/browser-check/SKILL.md) | 日常のブラウザ確認を変更箇所と合格条件に絞り、重複確認を減らす |
-| [working-style](plugins/development/skills/working-style/SKILL.md) | 計画・実装・再確認の前に、合意の引き継ぎと必要最小限の進め方を適用する |
+| [working-style](plugins/development/skills/working-style/SKILL.md) | 合意を引き継ぎ、未決事項だけ確認して作業を進める |
 
 開発の計画・実装・技術選定・命名・ドキュメントの更新確認・ブラウザ確認などの依頼時に、説明文に基づいて該当するスキルが選ばれます。明示的に使う場合は、Codexでは `$development:<スキル名>`、Claude Codeでは `/development:<スキル名>` を指定します。例: `$development:browser-check` / `/development:browser-check`。
 
@@ -20,9 +20,7 @@ Codex・Claude Codeで同じスキルを使うためのマーケットプレイ�
 
 `browser-check` は、日常の変更確認で合格条件を必要最小限にし、確認できたら終了します。修正後は原則として直した箇所だけを再確認し、成功済みの項目や周辺機能まで確認し直しません。追加確認は具体的な不具合の疑いがある箇所に限ります。ブラウザ操作ツールの必須手順やプロジェクトの必須チェックは維持し、総合QAの代替にはしません。追加のブラウザツールは同梱しません。
 
-`working-style` は、合意済みを聞き直さない・調べられることは自分で調べる・小さく実装する・信頼できる技術を選ぶ・確認を必要最小限にする・結果を短く伝える、という進め方をまとめています。
-
-`description` を手がかりに関連する開発作業で選択され、計画・実装・再確認の節目で適用します。本文がすでに文脈にあれば読み直しません。自動選択はモデルの判断によるため、各節目での呼び出しを保証するものではありません。常時適用する基本ルールは `AGENTS.md` / `CLAUDE.md` に残してください。
+`working-style` は合意の引き継ぎ・完了までの進行・簡潔な報告に絞ります。`description` による自動選択は、毎回の起動を保証するものではありません。
 
 ## Codex
 
