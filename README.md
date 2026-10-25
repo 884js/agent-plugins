@@ -11,6 +11,7 @@ Codex・Claude Codeで同じスキルを使うためのマーケットプレイ�
 | [check-docs](plugins/development/skills/check-docs/SKILL.md) | ステージ済みの変更に関連するドキュメントの更新漏れを確認・修正する |
 | [browser-check](plugins/development/skills/browser-check/SKILL.md) | 日常のブラウザ確認を変更箇所と合格条件に絞り、重複確認を減らす |
 | [working-style](plugins/development/skills/working-style/SKILL.md) | 作業の進め方と、説明・文章修正の伝え方を適用する |
+| [pr-comment](plugins/development/skills/pr-comment/SKILL.md) | PRのレビュー指摘・返信・実装や検証結果のコメントを整える |
 
 開発の計画・実装・技術選定・命名・ドキュメントの更新確認・ブラウザ確認などの依頼時に、説明文に基づいて該当するスキルが選ばれます。明示的に使う場合は、Codexでは `$development:<スキル名>`、Claude Codeでは `/development:<スキル名>` を指定します。例: `$development:browser-check` / `/development:browser-check`。
 
@@ -21,6 +22,8 @@ Codex・Claude Codeで同じスキルを使うためのマーケットプレイ�
 `browser-check` は、日常の変更確認で合格条件を必要最小限にし、確認できたら終了します。修正後は原則として直した箇所だけを再確認し、成功済みの項目や周辺機能まで確認し直しません。追加確認は具体的な不具合の疑いがある箇所に限ります。ブラウザ操作ツールの必須手順やプロジェクトの必須チェックは維持し、総合QAの代替にはしません。追加のブラウザツールは同梱しません。
 
 `working-style` は、合意の引き継ぎ・最小限の変更・情報の確認・図解・修正後の全文提示など、進め方と伝え方をまとめています。`description` による自動選択は、毎回の起動を保証するものではありません。
+
+`pr-comment` はレビュー指摘に `[MUST]`・`[IMO]`・`[NITS]`・`[Q]` を使い、返信・報告には付けません。リポジトリの表記指定を優先し、投稿・編集は明示的に依頼された場合だけ行います。
 
 ## Codex
 
