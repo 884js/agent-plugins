@@ -12,6 +12,7 @@ Codex・Claude Codeで同じスキルを使うためのマーケットプレイ�
 | [browser-check](plugins/development/skills/browser-check/SKILL.md) | 日常のブラウザ確認を変更箇所と合格条件に絞り、重複確認を減らす |
 | [working-style](plugins/development/skills/working-style/SKILL.md) | 作業の進め方と、説明・文章修正の伝え方を適用する |
 | [pr-comment](plugins/development/skills/pr-comment/SKILL.md) | PRのレビュー指摘・返信・実装や検証結果のコメントを整える |
+| [writing-style](plugins/development/skills/writing-style/SKILL.md) | 本人名義の文章を、相手に合った自然な日本語に整える |
 
 開発の計画・実装・技術選定・命名・ドキュメントの更新確認・ブラウザ確認などの依頼時に、説明文に基づいて該当するスキルが選ばれます。明示的に使う場合は、Codexでは `$development:<スキル名>`、Claude Codeでは `/development:<スキル名>` を指定します。例: `$development:browser-check` / `/development:browser-check`。
 
@@ -24,6 +25,8 @@ Codex・Claude Codeで同じスキルを使うためのマーケットプレイ�
 `working-style` は、合意の引き継ぎ・最小限の変更・情報の確認・図解・修正後の全文提示など、進め方と伝え方をまとめています。`description` による自動選択は、毎回の起動を保証するものではありません。
 
 `pr-comment` はレビュー指摘に `[MUST]`・`[IMO]`・`[NITS]`・`[Q]` を使い、返信・報告には付けません。リポジトリの表記指定を優先し、投稿・編集は明示的に依頼された場合だけ行います。
+
+`writing-style` は本人名義のSlack・PRコメント・Notion・メールなどの文体に適用します。AIの通常の返答には適用せず、PRのラベルや返信形式はそれぞれのスキルに任せます。
 
 ## Codex
 
