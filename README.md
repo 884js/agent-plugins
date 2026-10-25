@@ -1,4 +1,4 @@
-# agent-plugins
+# 884js-agent-plugins
 
 Codex・Claude Codeで同じスキルを使うためのマーケットプレイスです。開発に関するスキルを `development` プラグインにまとめ、今後も追加していきます。両クライアントで同じ `skills/` を読み込みます。
 
@@ -32,7 +32,7 @@ Codex・Claude Codeで同じスキルを使うためのマーケットプレイ�
 
 ```bash
 codex plugin marketplace add 884js/agent-plugins --ref main
-codex plugin add development@agent-plugins
+codex plugin add development@884js-agent-plugins
 codex plugin list --available --json
 ```
 
@@ -44,7 +44,7 @@ Claude Code内で実行します。
 
 ```text
 /plugin marketplace add 884js/agent-plugins
-/plugin install development@agent-plugins
+/plugin install development@884js-agent-plugins
 ```
 
 全プロジェクトで使う場合はUserスコープを選択してください。インストール後は新しいセッションを開始します。
@@ -53,8 +53,8 @@ Claude Code内で実行します。
 
 プラグイン・マーケットプレイスのどちらにも `version` を記載せず、タグやリリース番号を管理しません。更新は `main` のGitコミットを基準に取り込みます。
 
-- **Codex**: プラグインが有効な場合、起動時にGitマーケットプレイスを更新し、インストール済みキャッシュを再取得します。手動更新は `codex plugin marketplace upgrade agent-plugins` です。
-- **Claude Code**: 第三者マーケットプレイスの自動更新は既定で無効です。`/plugin` → Marketplaces → `agent-plugins` → Enable auto-updateを有効にしてください。手動更新は `/plugin marketplace update agent-plugins` と `/plugin update development@agent-plugins` です。
+- **Codex**: プラグインが有効な場合、起動時にGitマーケットプレイスを更新し、インストール済みキャッシュを再取得します。手動更新は `codex plugin marketplace upgrade 884js-agent-plugins` です。
+- **Claude Code**: 第三者マーケットプレイスの自動更新は既定で無効です。`/plugin` → Marketplaces → `884js-agent-plugins` → Enable auto-updateを有効にしてください。手動更新は `/plugin marketplace update 884js-agent-plugins` と `/plugin update development@884js-agent-plugins` です。
 - 更新後の内容は新しいセッションで確認してください。versionを省略しても、未更新のキャッシュや進行中の会話が即時に切り替わるわけではありません。
 
 根拠: [Codexの起動時更新](https://github.com/openai/codex/blob/rust-v0.142.5/codex-rs/core-plugins/src/manager.rs#L1837-L1889)、[Claude Codeのversion判定](https://code.claude.com/docs/en/plugins/loading#how-claude-code-computes-the-version)、[Claude Codeの自動更新](https://code.claude.com/docs/en/plugins/host-marketplace#turn-on-auto-update)。
