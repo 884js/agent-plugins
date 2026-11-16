@@ -1,0 +1,17 @@
+{
+  "name": "my-github",
+  "description": "自分が起票したissueと自分のPRを、Claude Codeのチャットの横のパネルに一覧で出す",
+  "author": {
+    "name": "884js"
+  },
+  "repository": "https://github.com/884js/agent-plugins",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "defaultOwner": {
+      "type": "string",
+      "title": "最初に絞り込む持ち主",
+      "description": "パネルで持ち主をまだ選んでいないときに絞り込むGitHubのユーザー名・組織名。空ならすべてを出す",
+      "default": ""
+    }
+  }
+}

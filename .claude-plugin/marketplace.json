@@ -4,13 +4,18 @@
     "name": "884js"
   },
   "metadata": {
-    "description": "Codex・Claude Code共通の開発スキル"
+    "description": "Codex・Claude Code共通の開発スキルと、Claude Code用の拡張"
   },
   "plugins": [
     {
       "name": "development",
       "source": "./plugins/development",
       "description": "技術選定や命名など、開発に関するスキル集"
+    },
+    {
+      "name": "my-github",
+      "source": "./plugins/my-github",
+      "description": "自分が起票したissueと自分のPRを、Claude Codeのチャットの横のパネルに一覧で出す（Claude Code専用）"
     }
   ]
 }
