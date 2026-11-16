@@ -215,17 +215,14 @@ function countOwners(snap: Snapshot, chosen: string): OwnerCount[] {
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
 }
 
-/** パネルで選んだ持ち主。まだ選んでいなければ設定の持ち主、それも無ければすべて */
-function resolveOwner(
-  chosen: string,
-  owners: OwnerCount[],
-  defaultOwner: string
-): string {
+/**
+ * パネルで選んだ持ち主。まだ選んでいなければ設定の持ち主、それも無ければすべて。
+ * 設定の持ち主は、取れた一覧にいなくてもそのまま使う（0 件として出す）
+ */
+function resolveOwner(chosen: string, defaultOwner: string): string {
   if (chosen !== "") return chosen;
 
-  return defaultOwner !== "" && owners.some(o => o.name === defaultOwner)
-    ? defaultOwner
-    : "all";
+  return defaultOwner !== "" ? defaultOwner : "all";
 }
 
 /** 端末の時刻帯での HH:mm */
@@ -309,6 +306,10 @@ async function openPane($: EngineInterface): Promise<UiOpenResult> {
     columns: PANE_COLUMNS
   });
   await update($, paneTick, n => n + 1);
+  // どこから開いても取り直す。取得は開く処理の外で走らせる
+  $.clock.after(0, () => {
+    void refresh($);
+  });
 
   return opened;
 }
@@ -327,10 +328,6 @@ export const register: Register = (on, options) => {
     const compact = await $.store.get(STORE_COMPACT);
     if (typeof compact === "boolean") await update($, isCompact, () => compact);
     void openPane($);
-    // 最初のプロンプトを待たせないよう、取得は session.start の外で走らせる
-    $.clock.after(0, () => {
-      void refresh($);
-    });
     $.clock.every(REFRESH_MS, () => {
       void refresh($);
     });
@@ -340,9 +337,6 @@ export const register: Register = (on, options) => {
 
   on("command.run", { command: COMMAND }, async $ => {
     const opened = await openPane($);
-    $.clock.after(0, () => {
-      void refresh($);
-    });
 
     return {
       text: opened.isPlaced
@@ -381,11 +375,7 @@ export const register: Register = (on, options) => {
     const { Box, Text, Button } = $.ui.resolve(e);
     const snap = await read($, snapshot);
     const stored = await read($, owner);
-    const chosen = resolveOwner(
-      stored,
-      countOwners(snap, stored),
-      defaultOwner
-    );
+    const chosen = resolveOwner(stored, defaultOwner);
     const inScope = (repo: string) =>
       chosen === "all" || ownerOf(repo) === chosen;
     const prCount = snap.prs.filter(p => inScope(p.repo)).length;
@@ -413,8 +403,8 @@ export const register: Register = (on, options) => {
     const compact = await read($, isCompact);
     const now = await $.clock.now();
 
-    const owners = countOwners(snap, stored);
-    const chosen = resolveOwner(stored, owners, defaultOwner);
+    const chosen = resolveOwner(stored, defaultOwner);
+    const owners = countOwners(snap, chosen);
     const inScope = (repo: string) =>
       chosen === "all" || ownerOf(repo) === chosen;
     const prs = snap.prs.filter(p => inScope(p.repo));

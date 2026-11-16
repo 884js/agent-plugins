@@ -167,6 +167,29 @@ test("持ち主を設定していなければ、すべてを出す", async ($, o
 });
 
 test(
+  "設定した持ち主の項目が無くても、その持ち主に絞って 0 件として出す",
+  { options: { defaultOwner: "nobody" } },
+  async ($, on) => {
+    const clock = standIn(on);
+    await $.session.start({
+      cwd: "/",
+      surface: "desktop",
+      isInteractive: true
+    });
+    await clock.settle();
+
+    const ui = await $.ui.mount({ ...PANE, surface: "desktop" });
+    expect(await ui.find({ key: "owner:nobody" })).toBeDefined();
+    expect(await ui.find({ type: "Link" })).toBeUndefined();
+    expect(
+      (await ui.find({ type: "Text", text: /開いている PR はありません/ }))
+        ?.text
+    ).toBe("開いている PR はありません");
+    await ui.unmount();
+  }
+);
+
+test(
   "コンパクトにすると、札と #番号つきのタイトルを幅に収めて 1 行で出す",
   { options: { defaultOwner: "acme" } },
   async ($, on) => {
@@ -243,15 +266,20 @@ test(
       }))
     }));
     on("session.start", (_, e) => ({ cwd: e.cwd }));
-    on("process.run", () => ({
-      value: {
-        exitCode: 0,
-        stdout: JSON.stringify(RESPONSE),
-        stderr: "",
-        isStdoutTruncated: false,
-        isStderrTruncated: false
-      }
-    }));
+    let runs = 0;
+    on("process.run", () => {
+      runs += 1;
+
+      return {
+        value: {
+          exitCode: 0,
+          stdout: JSON.stringify(RESPONSE),
+          stderr: "",
+          isStdoutTruncated: false,
+          isStderrTruncated: false
+        }
+      };
+    });
 
     await $.session.start({
       cwd: "/",
@@ -268,7 +296,11 @@ test(
         "acme: PR 1・Issue 1"
       );
 
+      // 押して開いたときも一覧を取り直す
+      const before = runs;
       await band.press({ key: "open-pane" });
+      await clock.settle();
+      expect(runs).toBe(before + 1);
       expect(placed).toEqual(["my-github"]);
       expect(await band.find({ key: "open-pane" })).toBeUndefined();
       expect((await band.find({ type: "Text", text: /engine/ }))?.text).toBe(
