@@ -1,6 +1,6 @@
 # 884js-agent-plugins
 
-Codex・Claude Codeで同じスキルを使うためのマーケットプレイスです。開発に関するスキルを `development` プラグインにまとめ、今後も追加していきます。両クライアントで同じ `skills/` を読み込みます。Claude Code専用のプラグインとして、自分のPR・issueをチャットの横に出す `my-github` も置いています。
+Codex・Claude Codeで同じスキルを使うためのマーケットプレイスです。開発に関するスキルを `development` プラグインにまとめ、今後も追加していきます。両クライアントで同じ `skills/` を読み込みます。自分の職歴・経験について答える `career` も置いています。Claude Code専用のプラグインとして、自分のPR・issueをチャットの横に出す `my-github` も置いています。
 
 ## スキル
 
@@ -28,6 +28,14 @@ Codex・Claude Codeで同じスキルを使うためのマーケットプレイ�
 
 `writing-style` は本人名義のSlack・PRコメント・Notion・メールなどの文体に適用します。AIの通常の返答には適用せず、PRのラベルや返信形式はそれぞれのスキルに任せます。
 
+## career
+
+| スキル | 用途 |
+| --- | --- |
+| [career-answer](plugins/career/skills/career-answer/SKILL.md) | 職歴・経験・スキルについて聞かれたときに、職務経歴書を読んで答える |
+
+経歴の中身はこのリポジトリに置かず、非公開の `884js/career-profile` を毎回読みます。ローカルの `~/Desktop/mywork/career-profile` を優先し、無ければ `gh` で読みます。職務経歴書に書いていないことは推測で答えず、ファイルの書き換えもしません。職務経歴書の更新は `career-profile` 側のスキルで行います。
+
 ## my-github（Claude Code専用）
 
 自分が起票したissueと自分のPRを、Claude Codeのチャットの横のパネルに一覧で出します。Claude Codeのプラグインのhooksモジュールで動くため、Codexでは使えません。
@@ -47,10 +55,11 @@ Codex・Claude Codeで同じスキルを使うためのマーケットプレイ�
 ```bash
 codex plugin marketplace add 884js/agent-plugins --ref main
 codex plugin add development@884js-agent-plugins
+codex plugin add career@884js-agent-plugins
 codex plugin list --available --json
 ```
 
-インストール後は新しいセッションを開始してください。Codexで使えるのは `development` だけです。
+インストール後は新しいセッションを開始してください。Codexで使えるのは `development` と `career` です。
 
 ## Claude Code
 
@@ -59,6 +68,7 @@ Claude Code内で実行します。使うプラグインだけインストール
 ```text
 /plugin marketplace add 884js/agent-plugins
 /plugin install development@884js-agent-plugins
+/plugin install career@884js-agent-plugins
 /plugin install my-github@884js-agent-plugins
 ```
 
@@ -79,7 +89,7 @@ Claude Code内で実行します。使うプラグインだけインストール
 
 ## 権限とデータ
 
-`development` はMCPサーバー、自動実行フック、インストール処理、独自の利用計測を登録しません。スキルの調査時には、利用中のクライアントの検索・閲覧・ファイル操作ツールを使用します。クライアント自身の通信・計測設定は変更しません。
+`development` と `career` はMCPサーバー、自動実行フック、インストール処理、独自の利用計測を登録しません。スキルの調査時には、利用中のクライアントの検索・閲覧・ファイル操作ツールを使用します。クライアント自身の通信・計測設定は変更しません。`career` はローカルに職務経歴書が無いときだけ、`gh api` で `884js/career-profile` を読み取ります。
 
 `my-github` は次のことを行います。独自の利用計測や、GitHub以外への送信はしません。
 
@@ -89,11 +99,12 @@ Claude Code内で実行します。使うプラグインだけインストール
 
 ## 開発
 
-共通manifestは `.claude-plugin/marketplace.json` と `plugins/development/.claude-plugin/plugin.json` にあります。CodexはClaude互換manifestを読み込めるため、定義を二重管理しません。`my-github` のmanifestは `plugins/my-github/.claude-plugin/plugin.json` です。
+共通manifestは `.claude-plugin/marketplace.json`、`plugins/development/.claude-plugin/plugin.json`、`plugins/career/.claude-plugin/plugin.json` にあります。CodexはClaude互換manifestを読み込めるため、定義を二重管理しません。`my-github` のmanifestは `plugins/my-github/.claude-plugin/plugin.json` です。
 
 ```bash
 claude plugin validate .
 claude plugin validate ./plugins/development
+claude plugin validate ./plugins/career
 claude plugin validate ./plugins/my-github
 claude plugin test ./plugins/my-github
 ```

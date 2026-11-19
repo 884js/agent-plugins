@@ -13,6 +13,11 @@
       "description": "技術選定や命名など、開発に関するスキル集"
     },
     {
+      "name": "career",
+      "source": "./plugins/career",
+      "description": "自分の職歴・経験を聞かれたときに、非公開の職務経歴書リポジトリを読んで答えるスキル"
+    },
+    {
       "name": "my-github",
       "source": "./plugins/my-github",
       "description": "自分が起票したissueと自分のPRを、Claude Codeのチャットの横のパネルに一覧で出す（Claude Code専用）"
